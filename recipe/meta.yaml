@@ -1,35 +1,38 @@
-{% set version = "3.0.0" %}
+{% set version = "3.1.1" %}
 
 package:
   name: pytest-benchmark
   version: {{ version }}
 
 source:
-  fn: pytest-benchmark-{{ version }}.zip
-  url: https://pypi.python.org/packages/source/p/pytest-benchmark/pytest-benchmark-{{ version }}.zip
-  md5: f8ab8e438f039366e3765168ad831b4c
+  fn: pytest-benchmark-{{ version }}.tar.gz
+  url: https://pypi.python.org/packages/source/p/pytest-benchmark/pytest-benchmark-{{ version }}.tar.gz
+  sha256: 185526b10b7cf1804cb0f32ac0653561ef2f233c6e50a9b3d8066a9757e36480
 
 build:
-  number: 1
+  number: 0
+  entry_points:
+    - py.test-benchmark = pytest_benchmark.cli:main
+    - pytest-benchmark = pytest_benchmark.cli:main
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
-  build:
+  host:
     - python
     - setuptools
-    - pytest >=2.6
-    - statistics  # [py<34]
-
   run:
     - python
-    - setuptools
-    - pytest >=2.6
+    - pytest >=2.8
+    - py-cpuinfo
     - statistics  # [py<34]
+    - pathlib     # [py<34]
 
 test:
   imports:
     - pytest_benchmark
+    - pytest_benchmark.storage
   commands:
+    - py.test-benchmark help
     - "py.test --traceconfig | grep pytest-benchmark-{{version}}"
 
 about:
