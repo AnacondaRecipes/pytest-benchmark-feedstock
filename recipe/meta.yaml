@@ -10,7 +10,7 @@ source:
   sha256: 185526b10b7cf1804cb0f32ac0653561ef2f233c6e50a9b3d8066a9757e36480
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - py.test-benchmark = pytest_benchmark.cli:main
     - pytest-benchmark = pytest_benchmark.cli:main
@@ -25,7 +25,7 @@ requirements:
     - pytest >=2.8
     - py-cpuinfo
     - statistics  # [py<34]
-    - pathlib     # [py<34]
+    - pathlib2    # [py<34]
 
 test:
   imports:
@@ -33,7 +33,6 @@ test:
     - pytest_benchmark.storage
   commands:
     - py.test-benchmark help
-    - "py.test --traceconfig | grep pytest-benchmark-{{version}}"
 
 about:
   home: https://github.com/ionelmc/pytest-benchmark
