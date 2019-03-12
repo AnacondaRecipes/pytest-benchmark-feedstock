@@ -1,4 +1,4 @@
-{% set version = "3.2.0" %}
+{% set version = "3.2.2" %}
 
 package:
   name: pytest-benchmark
@@ -7,7 +7,7 @@ package:
 source:
   fn: pytest-benchmark-{{ version }}.tar.gz
   url: https://pypi.python.org/packages/source/p/pytest-benchmark/pytest-benchmark-{{ version }}.tar.gz
-  sha256: 2f84151a6d6b83141b2de71c08a1aef14be393e59e095e3d67fb73caf204c850
+  sha256: 4512c6805318d07926efcb3b39f7b98a10d035305a93edfd5329c86cbf9cfbf7
 
 build:
   number: 0
@@ -22,7 +22,7 @@ requirements:
     - setuptools
   run:
     - python
-    - pytest >=2.8
+    - pytest >=3.8
     - py-cpuinfo
     - statistics  # [py<34]
     - pathlib2    # [py<34]
