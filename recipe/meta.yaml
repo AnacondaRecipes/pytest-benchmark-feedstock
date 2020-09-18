@@ -1,4 +1,4 @@
-{% set version = "3.2.2" %}
+{% set version = "3.2.3" %}
 
 package:
   name: pytest-benchmark
@@ -7,7 +7,7 @@ package:
 source:
   fn: pytest-benchmark-{{ version }}.tar.gz
   url: https://pypi.python.org/packages/source/p/pytest-benchmark/pytest-benchmark-{{ version }}.tar.gz
-  sha256: 4512c6805318d07926efcb3b39f7b98a10d035305a93edfd5329c86cbf9cfbf7
+  sha256: ad4314d093a3089701b24c80a05121994c7765ce373478c8f4ba8d23c9ba9528
 
 build:
   number: 0
