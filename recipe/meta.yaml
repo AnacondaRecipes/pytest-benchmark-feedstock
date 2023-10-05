@@ -1,51 +1,50 @@
-{% set version = "3.4.1" %}
+{% set name = "pytest-benchmark" %}
+{% set version = "4.0.0" %}
 
 package:
-  name: pytest-benchmark
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: pytest-benchmark-{{ version }}.tar.gz
-  url: https://pypi.python.org/packages/source/p/pytest-benchmark/pytest-benchmark-{{ version }}.tar.gz
-  sha256: 40e263f912de5a81d891619032983557d62a3d85843f9a9f30b98baea0cd7b47
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pytest-benchmark-{{ version }}.tar.gz
+  sha256: fb0785b83efe599a6a956361c0691ae1dbb5318018561af10f3e915caa0048d1
 
 build:
-  number: 2
-  skip: True  # [py<36]
   entry_points:
     - py.test-benchmark = pytest_benchmark.cli:main
     - pytest-benchmark = pytest_benchmark.cli:main
-  script: pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  number: 0
 
 requirements:
   host:
     - python
     - setuptools
+    - wheel
+    - pip
   run:
     - python
     - pytest >=3.8
     - py-cpuinfo
 
 test:
-  requires:
-    - pip
   imports:
     - pytest_benchmark
-    - pytest_benchmark.storage
   commands:
     - pip check
-    - py.test-benchmark help
+    - py.test-benchmark --help
+    - pytest-benchmark --help
+  requires:
+    - pip
 
 about:
   home: https://github.com/ionelmc/pytest-benchmark
   license: BSD-2-Clause
   license_family: BSD
-  license_url: https://github.com/ionelmc/pytest-benchmark/blob/master/LICENSE
   license_file: LICENSE
-  summary: "A py.test fixture for benchmarking code"
+  summary: A py.test fixture for benchmarking code
   dev_url: https://github.com/ionelmc/pytest-benchmark
-  doc_url: https://pytest-benchmark.readthedocs.io/en/stable/
-  doc_source_url: https://pytest-benchmark.readthedocs.io/en/stable/_sources/index.rst.txt
+  doc_url: https://pytest-benchmark.readthedocs.io
 
 extra:
     recipe-maintainers:
