@@ -26,6 +26,7 @@ requirements:
     - python
     - pytest >=3.8
     - py-cpuinfo
+    - py
 
 test:
   imports:
