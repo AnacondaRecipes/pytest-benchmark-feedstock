@@ -14,7 +14,7 @@ build:
     - py.test-benchmark = pytest_benchmark.cli:main
     - pytest-benchmark = pytest_benchmark.cli:main
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
@@ -26,6 +26,7 @@ requirements:
     - python
     - pytest >=3.8
     - py-cpuinfo
+    - py
 
 test:
   imports:
