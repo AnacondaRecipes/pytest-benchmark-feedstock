@@ -14,7 +14,7 @@ build:
     - py.test-benchmark = pytest_benchmark.cli:main
     - pytest-benchmark = pytest_benchmark.cli:main
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  number: 1
+  number: 2
 
 requirements:
   host:
@@ -43,7 +43,9 @@ about:
   license: BSD-2-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: A py.test fixture for benchmarking code
+  summary: A pytest fixture for benchmarking code
+  description: |
+    A pytest fixture for benchmarking code. It will group the tests by the fixture name and will run them with different number of iterations. It will also group the tests by the fixture name and will run them with different number of iterations. It will also group the tests by the fixture name and will run them with different number of iterations. It will also group the tests by the fixture name and will run them with different number of iterations.
   dev_url: https://github.com/ionelmc/pytest-benchmark
   doc_url: https://pytest-benchmark.readthedocs.io
 
