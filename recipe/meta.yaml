@@ -23,7 +23,6 @@ requirements:
     - setuptools >=30.3.0
     - wheel
     - pip
-    - py-cpuinfo
     - py
   run:
     - python
