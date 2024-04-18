@@ -10,7 +10,7 @@ source:
   sha256: fb0785b83efe599a6a956361c0691ae1dbb5318018561af10f3e915caa0048d1
 
 build:
-  skip: true # [py>37]
+  skip: true # [py<37]
   entry_points:
     - py.test-benchmark = pytest_benchmark.cli:main
     - pytest-benchmark = pytest_benchmark.cli:main
