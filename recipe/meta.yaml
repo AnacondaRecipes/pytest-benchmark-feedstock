@@ -10,10 +10,7 @@ source:
   sha256: 40e263f912de5a81d891619032983557d62a3d85843f9a9f30b98baea0cd7b47
 
 build:
-<<<<<<< Updated upstream
   skip: true # [py<37]
-=======
->>>>>>> Stashed changes
   entry_points:
     - py.test-benchmark = pytest_benchmark.cli:main
     - pytest-benchmark = pytest_benchmark.cli:main
