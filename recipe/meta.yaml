@@ -45,7 +45,7 @@ about:
   license_family: BSD
   license_file: LICENSE
   summary: A py.test fixture for benchmarking code
-  description: A ``pytest`` fixture for benchmarking code. It will group the tests into rounds that are calibrated to the chosen timer.
+  description: A pytest fixture for benchmarking code. It will group the tests into rounds that are calibrated to the chosen timer.
   dev_url: https://github.com/ionelmc/pytest-benchmark
   doc_url: https://pytest-benchmark.readthedocs.io
 
