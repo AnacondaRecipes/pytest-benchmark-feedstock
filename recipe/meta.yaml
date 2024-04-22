@@ -7,14 +7,15 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pytest-benchmark-{{ version }}.tar.gz
-  sha256: fb0785b83efe599a6a956361c0691ae1dbb5318018561af10f3e915caa0048d1
+  sha256: 40e263f912de5a81d891619032983557d62a3d85843f9a9f30b98baea0cd7b47
 
 build:
+  skip: true # [py<37]
   entry_points:
     - py.test-benchmark = pytest_benchmark.cli:main
     - pytest-benchmark = pytest_benchmark.cli:main
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  number: 1
+  number: 2
 
 requirements:
   host:
@@ -44,6 +45,7 @@ about:
   license_family: BSD
   license_file: LICENSE
   summary: A py.test fixture for benchmarking code
+  description: A pytest fixture for benchmarking code. It will group the tests into rounds that are calibrated to the chosen timer.
   dev_url: https://github.com/ionelmc/pytest-benchmark
   doc_url: https://pytest-benchmark.readthedocs.io
 
