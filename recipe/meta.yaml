@@ -1,13 +1,13 @@
 {% set name = "pytest-benchmark" %}
-{% set version = "5.1.0" %}
+{% set version = "5.2.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pytest-benchmark-{{ version }}.tar.gz
-  sha256: 9ea661cdc292e8231f7cd4c10b0319e56a2118e2c09d9f50e1b3d150d2aca105
+  url: https://pypi.org/packages/source/p/pytest-benchmark/pytest_benchmark-5.2.2.tar.gz
+  sha256: af6717b86a29a9fcd79eda8745883eff3a7fdd626326a6639db0d6cf4d334a89
 
 build:
   number: 0
@@ -20,8 +20,7 @@ build:
 requirements:
   host:
     - python
-    - setuptools >=30.3.0
-    - wheel
+    - setuptools >=80
     - pip
   run:
     - python
@@ -50,5 +49,5 @@ about:
   doc_url: https://pytest-benchmark.readthedocs.io
 
 extra:
-    recipe-maintainers:
-        - juanlu001
+  recipe-maintainers:
+    - juanlu001
