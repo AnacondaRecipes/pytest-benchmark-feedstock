@@ -27,13 +27,32 @@ requirements:
     - pytest >=8.1
     - py-cpuinfo
 
+# E AssertionError: assert 'main' == 'master'
+{% set deselect_tests = " --deselect=tests/test_utils.py::test_get_commit_info" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_utils.py::test_get_branch_info" %}
+# ModuleNotFoundError: No module named 'pygal'
+{% set ignore_tests = " --ignore=tests/test_cli.py" %}
+{% set ignore_tests = ignore_tests + " --ignore=tests/test_storage.py" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_benchmark.py::test_histogram" %}
+# E ModuleNotFoundError: No module named 'aspectlib'
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_with_weaver.py::test_weave_fixture" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_with_weaver.py::test_weave_method" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_with_testcase.py::TerribleTerribleWayToWritePatchTests::test_foo2" %}
+
 test:
+  source_files:
+    - tests
   imports:
     - pytest_benchmark
   requires:
     - pip
+    - pytest
+    - elasticsearch
+    - freezegun
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest tests {{ ignore_tests }} {{ deselect_tests }}
     - py.test-benchmark --help
     - pytest-benchmark --help
 
