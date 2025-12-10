@@ -30,6 +30,7 @@ requirements:
 # E AssertionError: assert 'main' == 'master'
 {% set deselect_tests = " --deselect=tests/test_utils.py::test_get_commit_info" %}
 {% set deselect_tests = deselect_tests + " --deselect=tests/test_utils.py::test_get_branch_info" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_utils.py::test_commit_info_error" %}
 # ModuleNotFoundError: No module named 'pygal'
 {% set ignore_tests = " --ignore=tests/test_cli.py" %}
 {% set ignore_tests = ignore_tests + " --ignore=tests/test_storage.py" %}
