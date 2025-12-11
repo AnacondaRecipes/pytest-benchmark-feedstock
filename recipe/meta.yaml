@@ -1,13 +1,13 @@
 {% set name = "pytest-benchmark" %}
-{% set version = "5.1.0" %}
+{% set version = "5.2.3" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pytest-benchmark-{{ version }}.tar.gz
-  sha256: 9ea661cdc292e8231f7cd4c10b0319e56a2118e2c09d9f50e1b3d150d2aca105
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
+  sha256: deb7317998a23c650fd4ff76e1230066a76cb45dcece0aca5607143c619e7779
 
 build:
   number: 0
@@ -20,21 +20,40 @@ build:
 requirements:
   host:
     - python
-    - setuptools >=30.3.0
-    - wheel
+    - setuptools >=80
     - pip
   run:
     - python
     - pytest >=8.1
     - py-cpuinfo
 
+# E AssertionError: assert 'main' == 'master'
+{% set deselect_tests = " --deselect=tests/test_utils.py::test_get_commit_info" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_utils.py::test_get_branch_info" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_utils.py::test_commit_info_error" %}
+# ModuleNotFoundError: No module named 'pygal'
+{% set ignore_tests = " --ignore=tests/test_cli.py" %}
+{% set ignore_tests = ignore_tests + " --ignore=tests/test_storage.py" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_benchmark.py::test_histogram" %}
+# E ModuleNotFoundError: No module named 'aspectlib'
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_with_weaver.py::test_weave_fixture" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_with_weaver.py::test_weave_method" %}
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_with_testcase.py::TerribleTerribleWayToWritePatchTests::test_foo2" %}
+
 test:
+  source_files:
+    - tests
   imports:
     - pytest_benchmark
   requires:
     - pip
+    - pytest
+    - elasticsearch
+    - freezegun
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest tests {{ ignore_tests }} {{ deselect_tests }}
     - py.test-benchmark --help
     - pytest-benchmark --help
 
@@ -50,5 +69,5 @@ about:
   doc_url: https://pytest-benchmark.readthedocs.io
 
 extra:
-    recipe-maintainers:
-        - juanlu001
+  recipe-maintainers:
+    - juanlu001
