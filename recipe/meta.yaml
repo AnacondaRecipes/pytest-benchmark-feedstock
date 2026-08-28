@@ -24,8 +24,8 @@ requirements:
     - pip
   run:
     - python
+    - py-cpuinfo2 >=10.1
     - pytest >=8.1
-    - py-cpuinfo
 
 # E AssertionError: assert 'main' == 'master'
 {% set deselect_tests = " --deselect=tests/test_utils.py::test_get_commit_info" %}
